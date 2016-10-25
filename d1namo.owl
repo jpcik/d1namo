@@ -1,0 +1,274 @@
+@prefix : <http://hevs.ch/aislab/vocab/d1namo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://hevs.ch/aislab/vocab/d1namo> .
+
+<http://hevs.ch/aislab/vocab/d1namo> rdf:type owl:Ontology ;
+                                      owl:imports <http://purl.oclc.org/NET/ssnx/meteo/aws> ,
+                                                  <http://www.w3.org/ns/dcat> ,
+                                                  <http://www.w3.org/ns/prov-o-20130430> .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://hevs.ch/aislab/vocab/d1namo#Accelerometer
+:Accelerometer rdf:type owl:Class ;
+               rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#SensingDevice> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#AccelerometerProperty
+:AccelerometerProperty rdf:type owl:Class ;
+                       rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Property> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#Activity
+:Activity rdf:type owl:Class ;
+          rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Property> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#ActivitySensor
+:ActivitySensor rdf:type owl:Class ;
+                rdfs:subClassOf :VirtualSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#BioharnessBreathingRate
+:BioharnessBreathingRate rdf:type owl:Class ;
+                         rdfs:subClassOf :BreathingSensor ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty <http://purl.oclc.org/NET/ssnx/ssn#hasMeasurementCapability> ;
+                                           owl:allValuesFrom :BioharnessBreathingRateCapability
+                                         ] .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#BioharnessBreathingRateCapability
+:BioharnessBreathingRateCapability rdf:type owl:Class ;
+                                   rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#MeasurementCapability> ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://purl.oclc.org/NET/ssnx/ssn#hasMeasurementProperty> ;
+                                                     owl:someValuesFrom :BioharnessBreathingRateFrequency
+                                                   ] ,
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://purl.oclc.org/NET/ssnx/ssn#hasMeasurementProperty> ;
+                                                     owl:someValuesFrom :BioharnessBreathingRateResponseTime
+                                                   ] .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#BioharnessBreathingRateFrequency
+:BioharnessBreathingRateFrequency rdf:type owl:Class ;
+                                  rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Frequency> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#BioharnessBreathingRateResponseTime
+:BioharnessBreathingRateResponseTime rdf:type owl:Class ;
+                                     rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#ResponseTime> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#Blood
+:Blood rdf:type owl:Class ;
+       rdfs:subClassOf :BodyPart .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#BodyPart
+:BodyPart rdf:type owl:Class ;
+          rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#FeatureOfInterest> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#Breathing
+:Breathing rdf:type owl:Class ;
+           rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Property> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#BreathingObservation
+:BreathingObservation rdf:type owl:Class ;
+                      rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Observation> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#BreathingRateObservation
+:BreathingRateObservation rdf:type owl:Class ;
+                          rdfs:subClassOf :BreathingObservation .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#BreathingSensor
+:BreathingSensor rdf:type owl:Class ;
+                 rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#SensingDevice> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#ContinuousGlucoseMonitor
+:ContinuousGlucoseMonitor rdf:type owl:Class ;
+                          rdfs:subClassOf :GlucoseSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#ECG
+:ECG rdf:type owl:Class ;
+     rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Property> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#ECGObservation
+:ECGObservation rdf:type owl:Class ;
+                rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Observation> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#ECGSensor
+:ECGSensor rdf:type owl:Class ;
+           rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#SensingDevice> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#FoodLogger
+:FoodLogger rdf:type owl:Class ;
+            rdfs:subClassOf :HumanAsSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#GeneralLogger
+:GeneralLogger rdf:type owl:Class ;
+               rdfs:subClassOf :HumanAsSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#Glucometer
+:Glucometer rdf:type owl:Class ;
+            rdfs:subClassOf :GlucoseSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#GlucoseSensor
+:GlucoseSensor rdf:type owl:Class ;
+               rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#SensingDevice> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#GlycemicEventSensor
+:GlycemicEventSensor rdf:type owl:Class ;
+                     rdfs:subClassOf :VirtualSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#HumanAsSensor
+:HumanAsSensor rdf:type owl:Class ;
+               rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Sensor> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#HyperglycemiaSensor
+:HyperglycemiaSensor rdf:type owl:Class ;
+                     rdfs:subClassOf :GlycemicEventSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#HypoglycemiaSensor
+:HypoglycemiaSensor rdf:type owl:Class ;
+                    rdfs:subClassOf :GlycemicEventSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#IntersitialFluid
+:IntersitialFluid rdf:type owl:Class ;
+                  rdfs:subClassOf :BodyPart .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#PostureSensor
+:PostureSensor rdf:type owl:Class ;
+               rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#SensingDevice> .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#Skin
+:Skin rdf:type owl:Class ;
+      rdfs:subClassOf :BodyPart .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#SleepLogger
+:SleepLogger rdf:type owl:Class ;
+             rdfs:subClassOf :HumanAsSensor .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#Tissue
+:Tissue rdf:type owl:Class ;
+        rdfs:subClassOf :BodyPart .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#VirtualSensor
+:VirtualSensor rdf:type owl:Class ;
+               rdfs:subClassOf <http://purl.oclc.org/NET/ssnx/ssn#Sensor> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://hevs.ch/aislab/vocab/d1namo#accelerometer_lateral
+:accelerometer_lateral rdf:type owl:NamedIndividual ,
+                                :AccelerometerProperty .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#accelerometer_sagittal
+:accelerometer_sagittal rdf:type owl:NamedIndividual ,
+                                 :AccelerometerProperty .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#accelerometer_vertical
+:accelerometer_vertical rdf:type owl:NamedIndividual ,
+                                 :AccelerometerProperty .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#bioharness_breathingRateCapability
+:bioharness_breathingRateCapability rdf:type owl:NamedIndividual ,
+                                             :BioharnessBreathingRateCapability ;
+                                    <http://purl.oclc.org/NET/ssnx/ssn#hasMeasurementProperty> :bioharness_breathingRate_frequency .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#bioharness_breathingRate_frequency
+:bioharness_breathingRate_frequency rdf:type owl:NamedIndividual ,
+                                             :BioharnessBreathingRateFrequency ;
+                                    <http://purl.oclc.org/NET/ssnx/qu/qu#unit> <http://purl.oclc.org/NET/ssnx/qu/unit#hertz> ;
+                                    <http://purl.oclc.org/NET/ssnx/qu/qu#numericalValue> 25 .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#bioharness_breathingRate_responseTime
+:bioharness_breathingRate_responseTime rdf:type owl:NamedIndividual ,
+                                                :BioharnessBreathingRateResponseTime ;
+                                       <http://purl.oclc.org/NET/ssnx/qu/qu#unit> <http://purl.oclc.org/NET/ssnx/qu/unit#secondUnitOfTime> ;
+                                       <http://purl.oclc.org/NET/ssnx/qu/qu#numericalValue> 15 .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#breathing_beat
+:breathing_beat rdf:type owl:NamedIndividual ,
+                         :Breathing .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#breathing_beat_to_beat
+:breathing_beat_to_beat rdf:type owl:NamedIndividual ,
+                                 :Breathing .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#breathing_peak
+:breathing_peak rdf:type owl:NamedIndividual ,
+                         :Breathing .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#breathing_rate
+:breathing_rate rdf:type owl:NamedIndividual ,
+                         :Breathing .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#ecg_heart_rate
+:ecg_heart_rate rdf:type owl:NamedIndividual ,
+                         :ECG .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#ecg_r_to_r
+:ecg_r_to_r rdf:type owl:NamedIndividual ,
+                     :ECG .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#ecg_waveform
+:ecg_waveform rdf:type owl:NamedIndividual ,
+                       :ECG .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#vmu
+:vmu rdf:type owl:NamedIndividual ,
+              :Activity .
+
+
+###  http://hevs.ch/aislab/vocab/d1namo#vmu_cummulative
+:vmu_cummulative rdf:type owl:NamedIndividual ,
+                          :Activity .
+
+
+###  Generated by the OWL API (version 4.2.5.20160517-0735) https://github.com/owlcs/owlapi
